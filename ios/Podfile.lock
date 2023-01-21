@@ -1,4 +1,13 @@
 PODS:
+  - appcenter-analytics (4.4.5):
+    - AppCenter/Analytics (~> 4.0)
+    - AppCenterReactNativeShared (~> 4.0)
+    - React-Core
+  - AppCenter/Analytics (4.4.3):
+    - AppCenter/Core
+  - AppCenter/Core (4.4.3)
+  - AppCenterReactNativeShared (4.4.5):
+    - AppCenter/Core (= 4.4.3)
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
@@ -380,12 +389,46 @@ PODS:
     - React-Core
   - RNDateTimePicker (6.7.1):
     - React-Core
+  - RNGestureHandler (2.9.0):
+    - React-Core
+  - RNReanimated (2.14.2):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNSVG (13.7.0):
+    - React-Core
+  - RNVectorIcons (9.2.0):
+    - React-Core
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
+  - appcenter-analytics (from `../node_modules/appcenter-analytics`)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -448,10 +491,16 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - AppCenter
+    - AppCenterReactNativeShared
     - CocoaAsyncSocket
     - Flipper
     - Flipper-Boost-iOSX
@@ -469,6 +518,8 @@ SPEC REPOS:
     - YogaKit
 
 EXTERNAL SOURCES:
+  appcenter-analytics:
+    :path: "../node_modules/appcenter-analytics"
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   DoubleConversion:
@@ -543,10 +594,21 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AppCenter: 3fd04aa1b166e16fdb03ec81dabe488aece83fbd
+  appcenter-analytics: 1aea9ada8922d2e2df3e069a28eda21157c9d30d
+  AppCenterReactNativeShared: f395caeabde0dc3a11609dbcb737d0f14cd40e79
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
@@ -597,6 +659,10 @@ SPEC CHECKSUMS:
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
   RNDateTimePicker: 0530a73a6f3a1a85814cbde0802736993b9e675e
+  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
+  RNReanimated: 3ed15d2c7d7fd9d9a284de291a1e347d132d282b
+  RNSVG: d787d64ca06b9158e763ad2638a8c4edce00782a
+  RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

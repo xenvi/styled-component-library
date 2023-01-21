@@ -39,7 +39,10 @@ try {
 
 const getStories = () => {
   return [
+    require("../components/AnimatedHeart/AnimatedHeart.stories.tsx"),
     require("../components/Button/Button.stories.tsx"),
+    require("../components/Card/Card.stories.tsx"),
+    require("../components/WaveSVG/WaveSVG.stories.tsx"),
   ];
 };
 
