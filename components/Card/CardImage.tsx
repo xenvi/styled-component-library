@@ -1,52 +1,82 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
-import { Text, useTheme, ActivityIndicator } from "react-native-paper";
-import { bool, string } from "prop-types";
+import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { useQuery } from "@apollo/client";
-import styled from 'styled-components/native'
+import styled, { css, useTheme } from 'styled-components/native'
 
-import ImagePlaceholder from "../ImagePlaceholder";
-import Placeholder from "../Placeholder";
-import { FETCH_RESIZED_IMAGE } from "../../api/rivers";
-import useQueryResizedImage from "../../db/hooks/queries/useQueryResizedImage";
+import ImagePlaceholder from "../ImagePlaceholder/ImagePlaceholder";
+import Placeholder from "../Placeholder/Placeholder";
 
-const styles = StyleSheet.create({
-  image: {
-    width: "100%",
-    height: 140,
-    resizeMode: "cover",
-    borderTopRightRadius: 4,
-    borderTopLeftRadius: 4,
-  },
-  error: { textAlign: "center", marginBottom: 8 },
-  errorText: { color: "white" },
-  placeholder: { position: "absolute", justifyContent: "center" },
-  spinner: { justifyContent: "center" },
-});
+const imageStyles = {
+  width: "100%",
+  height: 140,
+  resizeMode: "cover",
+  borderTopRightRadius: 4,
+  borderTopLeftRadius: 4,
+}
+const placeholderStyles = { position: "absolute", justifyContent: "center" }
+const errorStyles = `
+  text-align: center;
+  margin-bottom: 8px;
+`
 
+// const styles = StyleSheet.create({
+//   image: {
+//     width: "100%",
+//     height: 140,
+//     resizeMode: "cover",
+//     borderTopRightRadius: 4,
+//     borderTopLeftRadius: 4,
+//   },
+//   error: { textAlign: "center", marginBottom: 8 },
+//   errorText: { color: "white" },
+//   placeholder: { position: "absolute", justifyContent: "center" },
+//   spinner: { justifyContent: "center" },
+// });
+
+const StyledImagePlaceholder = styled(ImagePlaceholder)({
+  ...imageStyles
+})
 const StyledPlaceholder = styled(Placeholder)`
+  position: absolute;
   justify-content: center;
+`
+const ErrorIcon = styled(Icon)`
+  ${errorStyles}
+`
+const ErrorText = styled.Text`
+  ${errorStyles}
+  color: white;
+`
+const PlaceholderWrapper = styled.View`
+  ${imageStyles}
+  ${placeholderStyles}
+  ${({ theme }) => `backgroundColor: ${theme.colors.cardBackground}`}
+`
+const StyledFastImage = styled(FastImage)`
+  ${imageStyles}
 `
 
 export type CardImageProps = {
-  bodyOfWaterId: string,
   renderImage: bool,
   image: string,
+  data: object,
+  loading: bool,
+  error: object, // check
 };
 
 const CardImage = (props: CardImageProps) => {
   const {
-    bodyOfWaterId,
     renderImage,
     image,
-  } = props
+    data,
+    loading,
+    error,
+  } = props;
   const theme = useTheme();
 
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const { data, loading, error } = useQueryResizedImage(bodyOfWaterId, renderImage)
 
   if (!renderImage && !image) {
     return (
@@ -58,14 +88,13 @@ const CardImage = (props: CardImageProps) => {
 
   if ((loading || error || !data?.getResizedImage) && !image) {
     return (
-      <ImagePlaceholder style={styles.image} loading={loading} error={Boolean(error)} />
+      <StyledImagePlaceholder loading={loading} error={Boolean(error)} />
     );
   }
 
   return (
     <>
-      <FastImage
-        style={styles.image}
+      <StyledFastImage
         source={{
           uri: image || data.getResizedImage,
           priority: FastImage.priority.normal,
@@ -75,29 +104,23 @@ const CardImage = (props: CardImageProps) => {
         onError={() => setHasError(true)}
       />
       {Boolean(isLoading || hasError) && (
-        <View
-          style={[
-            styles.placeholder,
-            styles.image,
-            { backgroundColor: theme.colors.cardBackground },
-          ]}
-        >
+        <PlaceholderWrapper>
           {hasError ? (
             <>
-              <Icon
+              <ErrorIcon
                 name="warning"
                 color={theme.colors.error}
                 size={45}
                 style={styles.error}
               />
-              <Text style={[styles.error, styles.errorText]}>
+              <ErrorText>
                 Unable to load image
-              </Text>
+              </ErrorText>
             </>
           ) : (
             <ActivityIndicator color="white" />
           )}
-        </View>
+        </PlaceholderWrapper>
       )}
     </>
   );
