@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import styled, { css, useTheme } from 'styled-components/native'
+import styled, { useTheme } from 'styled-components/native';
 
 import ImagePlaceholder from "../ImagePlaceholder/ImagePlaceholder";
 import Placeholder from "../Placeholder/Placeholder";
@@ -58,10 +58,12 @@ const StyledFastImage = styled(FastImage)`
 `
 
 export type CardImageProps = {
-  renderImage: bool,
+  renderImage: boolean,
   image: string,
-  data: object,
-  loading: bool,
+  data: {
+    getResizedImage: string
+  },
+  loading: boolean,
   error: object, // check
 };
 
@@ -111,7 +113,6 @@ const CardImage = (props: CardImageProps) => {
                 name="warning"
                 color={theme.colors.error}
                 size={45}
-                style={styles.error}
               />
               <ErrorText>
                 Unable to load image

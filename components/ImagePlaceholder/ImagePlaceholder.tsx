@@ -2,6 +2,7 @@ import React from "react";
 import { Text, ActivityIndicator, StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import styled from 'styled-components/native';
 
 import emptyStateImage from "../../public/images/emptyState.png";
 import emptyStateIcon from "../../public/images/emptyStateIcon.png";
@@ -64,11 +65,11 @@ const StyledText = styled.Text({
 
 export type ImagePlaceholderProps = {
     style: object,
-    loading: bool,
-    error: bool,
+    loading: boolean,
+    error: boolean,
 };
 
-const ImagePlaceholder = (props) => {
+const ImagePlaceholder = (props: { style: object; loading: boolean; error: boolean }) => {
   return (
     <Wrapper>
       <StyledImage

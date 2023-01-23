@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import styled from 'styled-components/native';
 
 const StyledPlaceholder = styled.View`
     width: 100%;
@@ -11,7 +12,7 @@ export type PlaceholderProps = {
     style: object
 };
 
-const Placeholder = (props) => (
+const Placeholder = (props: { style: object; children: any; }) => (
     <StyledPlaceholder style={props.style}>
       {props.children}
     </StyledPlaceholder>
