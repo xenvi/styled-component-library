@@ -12,7 +12,7 @@ export default {
 // export const RiverCard: ComponentStory<typeof Card> = args => (
 //   <Card {...args} />
 // );
-export const CardImageStory: ComponentStory<typeof Card> = args => (
+export const CardImageSuccess: ComponentStory<typeof Card> = args => (
   <CardImage {...args} />
 );
 export const CardImageLoading: ComponentStory<typeof Card> = args => (
@@ -26,7 +26,7 @@ export const CardImageError: ComponentStory<typeof Card> = args => (
 //   tag: Button,
 // };
 
-CardImageStory.args = {
+CardImageSuccess.args = {
   renderImage: true,
   image: "https://d6vcjqhhxncch.cloudfront.net/fit-in/500x500/images/426/dreamstime_xs_61133501.jpg",
   data: null,
