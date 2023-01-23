@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
+import { ActivityIndicator } from "react-native";
 import FastImage from "react-native-fast-image";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import styled, { useTheme } from 'styled-components/native';

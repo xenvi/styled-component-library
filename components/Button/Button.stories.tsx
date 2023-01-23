@@ -10,11 +10,16 @@ export default {
 } as ComponentMeta<typeof StyledButton>;
 
 export const RNButton: ComponentStory<typeof StyledButton> = args => (
-  <StyledButton {...args}>
-    I'm a react-native Button!
-  </StyledButton>
+  <StyledButton {...args} />
 );
 
 RNButton.args = {
-  tag: Button,
+  tag: Button, // only required prop
+  title: "I'm a react-native Button!",
+  activeOpacity: "0.8",
+  onPress: () => console.log('Button clicked!'),
+  disabled: false,
+  style: {
+    backgroundColor: 'red',
+  },
 };

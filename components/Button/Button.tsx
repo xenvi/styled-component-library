@@ -1,20 +1,21 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { css } from 'styled-components';
+import styled from 'styled-components/native';
 
 export type ButtonProps = {
-  onPress: () => void;
-  text: string;
-  color?: string;
-  textColor?: string;
+  tag: any;
+  style: object;
+  // and any other button props
 };
 
-const CustomButton = ({ tag, children, ...props }) => {
-  const StyledButton = styled(tag)`
-    padding: 8px;
-    borderRadius: 4px;
-  `;
-  return <StyledButton {...props}>{children}</StyledButton>;
+const CustomButton = ({ tag, style, ...props }: ButtonProps) => {
+  console.log('style', style)
+  const StyledButton = styled(tag)({
+    padding: 8,
+    borderRadius: 4,
+    ...style
+  });
+
+  return <StyledButton {...props} />;
 };
 
 
